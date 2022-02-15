@@ -1,4 +1,5 @@
 import os
+import random
 from flask import Flask, redirect, render_template, session,g
 ROOT='E:/anjianjipic'
 SESSION_TYPE = 'memcached'
@@ -35,12 +36,18 @@ def render():
     print('render curpath=',session['curpath'])
     print('render files=',  g.files)
     print('render  subdirs=',g.subdirs)            
+    if len(g.files)==0:
+        return render_template('main.html',subdirs=g.subdirs,file='',curpath=session['curpath'])
     
-
     id=session['fid']
     if id >= len(g.files):
             id=0
     session['fid']=id+1
+    #使用随机数            
+    id=random.randint(0,len(g.files)-1)      
+    if id >= len(g.files):
+            id=0
+    
     return render_template('main.html',subdirs=g.subdirs,file=session['curpath']+'/'+g.files[id],curpath=session['curpath'])
 @app.route('/switch/<dir>')
 def switch_handle(dir):
