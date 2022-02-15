@@ -26,16 +26,16 @@ def list_dir():
     g.files  = files
 
 def switch_path(curpath):
-    print('switch path curpath=',curpath)
+    #print('switch path curpath=',curpath)
     session['curpath']=curpath
     session['fid'] = 0
 
 def render():
-    print('session=',session)
+    #print('session=',session)
     list_dir()
-    print('render curpath=',session['curpath'])
-    print('render files=',  g.files)
-    print('render  subdirs=',g.subdirs)            
+    #print('render curpath=',session['curpath'])
+    #print('render files=',  g.files)
+    #print('render  subdirs=',g.subdirs)            
     if len(g.files)==0:
         return render_template('main.html',subdirs=g.subdirs,file='',curpath=session['curpath'])
     
