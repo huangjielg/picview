@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Hello from Flask</title>
+<H5>当前目录 {{curpath}}</H5>
+{% for dir in subdirs %}
+<A href="{{url_for('switch_handle',dir=dir)}}"> {{dir}} </A>
+{% endfor %}
+<br>
+<A href="/"> 当前文件:{{file}} <br> <img src="{{url_for('static',filename=file)}}" />
+</A>
+
